@@ -1,0 +1,15 @@
+Medication Type,Brand Name,Generic Name,Duration,Mechanism of Action,Common Side Effects,duration_low,duration_high,duration
+Stimulant – Methylphenidate,Ritalin,Methylphenidate,Short (3–5 hrs),Increases dopamine & norepinephrine,"Insomnia, anxiety, decreased appetite",3.0,5.0,2.0
+Stimulant – Methylphenidate,Ritalin LA,Methylphenidate ER,Long (6–8 hrs),Same as above,"Nervousness, headache",6.0,8.0,2.0
+Stimulant – Methylphenidate,Concerta,Methylphenidate ER,Long (10–12 hrs),Osmotic release delivery,"Irritability, dry mouth",10.0,12.0,2.0
+Stimulant – Methylphenidate,Focalin,Dexmethylphenidate,Short (4–6 hrs),Dopamine reuptake inhibitor,"Appetite loss, restlessness",4.0,6.0,2.0
+Stimulant – Methylphenidate,Focalin XR,Dexmethylphenidate XR,Long (10–12 hrs),Same as above,"Mood changes, insomnia",10.0,12.0,2.0
+Stimulant – Amphetamine,Adderall,Mixed amphetamine salts,Short (4–6 hrs),Increases dopamine & norepinephrine,"Increased heart rate, irritability, insomnia",4.0,6.0,2.0
+Stimulant – Amphetamine,Adderall XR,Mixed amphetamine salts XR,Long (10–12 hrs),Gradual release beads,"Insomnia, dry mouth",10.0,12.0,2.0
+Stimulant – Amphetamine,Vyvanse,Lisdexamfetamine,Long (12–14 hrs),Prodrug activated in body,"Jitteriness, nausea",12.0,14.0,2.0
+Stimulant – Amphetamine,Evekeo,Amphetamine sulfate,Short (4–6 hrs),Stimulant effect,"Dizziness, agitation",4.0,6.0,2.0
+Stimulant – Amphetamine,Mydayis,Mixed amphetamine salts XR,Very Long (16 hrs),Triple-bead release,"Sleep issues, decreased appetite",16.0,17.0,1.0
+Non-Stimulant,Strattera,Atomoxetine,24 hrs,Norepinephrine reuptake inhibitor,"Fatigue, nausea, decreased libido",24.0,25.0,1.0
+Non-Stimulant,Wellbutrin (off-label),Bupropion,12–24 hrs,Dopamine + norepinephrine reuptake,"Dry mouth, anxiety, insomnia",12.0,24.0,12.0
+Non-Stimulant,Intuniv,Guanfacine ER,24 hrs,Alpha-2A adrenergic agonist,"Drowsiness, low blood pressure",24.0,25.0,1.0
+Non-Stimulant,Kapvay,Clonidine ER,12–24 hrs,Alpha-2 adrenergic agonist,"Fatigue, constipation",12.0,24.0,12.0
