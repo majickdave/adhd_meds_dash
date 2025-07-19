@@ -102,9 +102,9 @@ app.layout = html.Div([
 
         ),
         style={'textAlign': 'center'}
-    )
+    ),
     html.Div(
-        html.A('🔗 Go to Supplement App', href='https://adhdmeddash.streamlit.app/', target='_blank'),
+        html.A('⏳ Medication Duration Range Data Vizualization', href='https://adhdmeddash.streamlit.app/', target='_blank'),
         style={'textAlign': 'center', 'marginTop': '30px', 'fontSize': '18px'}
     )
 ], style={'fontFamily': 'Arial, sans-serif'})
@@ -112,4 +112,4 @@ app.layout = html.Div([
 server = app.server
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8050)))
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8050)))
