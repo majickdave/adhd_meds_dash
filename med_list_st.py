@@ -40,8 +40,8 @@ fig = px.bar(
     title='Medication Duration Ranges by Brand'
 )
 
-st.plotly_chart(fig, use_container_width=True)
-
+st.plotly_chart(fig)
+st.dataframe(df)
 # Optional: show raw data
 with st.expander("📊 Show Data Table"):
     st.dataframe(df)
