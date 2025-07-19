@@ -41,7 +41,7 @@ fig = px.bar(
 )
 
 st.plotly_chart(fig)
-st.dataframe(df)
+
 # Optional: show raw data
 with st.expander("📊 Show Data Table"):
     st.dataframe(df)
