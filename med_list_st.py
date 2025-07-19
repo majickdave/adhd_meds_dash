@@ -41,6 +41,7 @@ fig = px.bar(
 )
 
 st.plotly_chart(fig)
+st.markdown("[Go to Medication Table App](https://adult-adhd-med-list-f7031a735048.herokuapp.com/)")
 
 # Optional: show raw data
 with st.expander("📊 Show Data Table"):
