@@ -40,6 +40,25 @@ fig = px.bar(
     title='Medication Duration Ranges by Brand'
 )
 
+df = df.rename(columns={'duration_low': 'Duration (hours)'})
+
+treemap = px.treemap(
+    df,
+    path=['Medication Type', 'Generic Name', 'Brand Name'],
+    values='Duration (hours)',
+    color='Medication Type',
+    color_discrete_sequence=px.colors.qualitative.Pastel,
+    title='Medication Hierarchy by Duration (hours)'
+)
+
+# Remove the default "sum of values" from tooltip
+treemap.update_traces(
+    hovertemplate='<b>%{label}</b><br>Duration: %{value} hours<br><extra></extra>'
+)
+
+treemap.update_traces(textinfo='label+value')
+
+st.plotly_chart(treemap)
 st.plotly_chart(fig)
 st.markdown("[Go to Medication Table App](https://adult-adhd-med-list-f7031a735048.herokuapp.com/)")
 
