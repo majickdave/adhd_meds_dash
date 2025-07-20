@@ -9,10 +9,23 @@ df = pd.read_csv(file_path)
 
 # Columns to use
 visible_cols = ['Brand Name']
-hidden_cols  = ['Duration', 'Mechanism of Action', 'Common Side Effects']
-# Keep 'Medication Type' for tooltips and styling but don't show in table
+hidden_cols = ['Duration', 'Mechanism of Action', 'Common Side Effects']
 
-# --- build tooltips: one dict per row ---
+# Define emoji map for medication types
+unique_types = df['Medication Type'].unique()
+emoji_palette = [
+    '🧠', '⚡️', '💊', '🌙', '🌀',
+    '🔥', '🌿', '🧪', '🚀', '🔄'
+]
+type_emoji_map = {
+    med_type: emoji_palette[i % len(emoji_palette)]
+    for i, med_type in enumerate(unique_types)
+}
+
+# Add emoji prefix to Brand Name in display
+df['Brand Name'] = df.apply(lambda row: f"{type_emoji_map[row['Medication Type']]} {row['Brand Name']}", axis=1)
+
+# --- build tooltips ---
 tooltip_data = []
 for row in df.to_dict('records'):
     details = "\n".join(
@@ -23,36 +36,32 @@ for row in df.to_dict('records'):
         'Brand Name': {'value': details, 'type': 'markdown'}
     })
 
-# Generate color mapping
-unique_types = df['Medication Type'].unique()
-color_palette = [
-    '#ffcccc', '#ccffcc', '#ccccff', '#ffffcc', '#e0ccff',
-    '#ccffff', '#ffd9b3', '#e6f7ff', '#d1f2eb', '#f9e79f'
+# --- create a legend ---
+legend_items = [
+    html.Div([
+        html.Span(type_emoji_map[med_type], style={'fontSize': '20px', 'marginRight': '8px'}),
+        html.Span(med_type)
+    ], style={'margin': '5px', 'display': 'inline-flex', 'alignItems': 'center'})
+    for med_type in unique_types
 ]
-type_color_map = {
-    med_type: color_palette[i % len(color_palette)]
-    for i, med_type in enumerate(unique_types)
-}
 
-# Conditional formatting (still based on Medication Type)
-type_based_styles = [
-    {
-        'if': {
-            'filter_query': f'{{Medication Type}} = "{med_type}"',
-            'column_id': 'Brand Name'
-        },
-        'backgroundColor': color,
-        'color': 'black'
-    }
-    for med_type, color in type_color_map.items()
-]
+legend_section = html.Div([
+    html.H4('Legend: Medication Type Icons', style={'textAlign': 'center'}),
+    html.Div(legend_items, style={
+        'display': 'flex',
+        'flexWrap': 'wrap',
+        'justifyContent': 'center',
+        'gap': '15px',
+        'padding': '10px'
+    })
+])
 
 # --- assemble your Dash app ---
 app = dash.Dash(__name__)
 
 app.layout = html.Div([
-    html.H2(
-        '💊 ADHD Medications — Brand Names',
+    html.H1(
+        'ADHD Medications',
         style={'textAlign': 'center', 'margin': '20px 0'}
     ),
     html.Div(
@@ -78,11 +87,12 @@ app.layout = html.Div([
                 'backgroundColor': '#f2f2f2',
                 'fontWeight': 'bold',
                 'border': '1px solid #dfe6e9'
-            },
-            style_data_conditional=type_based_styles
+            }
+            # Removed style_data_conditional
         ),
         style={'textAlign': 'center'}
     ),
+    legend_section,
     html.Div(
         html.A('⏳ Medication Duration Range Data Visualization', href='https://adhdmeddash.streamlit.app/', target='_blank'),
         style={'textAlign': 'center', 'marginTop': '30px', 'fontSize': '18px'}
